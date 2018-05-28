@@ -16,4 +16,14 @@ class NameParserAndAnonymizerTest extends TestCase
 
         $this->assertEquals('John S.', $name);
     }
+
+    /** @test */
+    public function compound_name_is_parsed_and_anonymized_and_transformed_to_string()
+    {
+        $nameParserAndAnonymizer = new NameParserAndAnonymizer();
+
+        $name = (string) $nameParserAndAnonymizer->parse('John Ronald Reuel Tolkien')->anonymize();
+
+        $this->assertEquals('John T.', $name);
+    }
 }

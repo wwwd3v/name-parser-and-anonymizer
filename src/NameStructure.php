@@ -7,6 +7,9 @@ abstract class NameStructure
     /** @var string */
     protected $firstName;
 
+    /** @var array */
+    protected $middleNames;
+
     /** @var string */
     protected $lastName;
 
@@ -19,10 +22,20 @@ abstract class NameStructure
     }
 
     /**
+     * @return array
+     */
+    public function getMiddleNames(): array
+    {
+        return $this->middleNames;
+    }
+
+    /**
      * @return string
      */
     public function getLastName(): string
     {
         return $this->lastName;
     }
+
+    abstract public function __toString();
 }

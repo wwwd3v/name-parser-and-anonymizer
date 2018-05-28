@@ -9,9 +9,10 @@ class Name extends NameStructure
      */
     public function __construct($name)
     {
-        [$firstName, $lastName] = $this->splitIntoNames($name);
+        [$firstName, $middleNames, $lastName] = $this->splitIntoNames($name);
 
         $this->firstName = $firstName;
+        $this->middleNames = $middleNames;
         $this->lastName = $lastName;
     }
 
@@ -32,9 +33,19 @@ class Name extends NameStructure
     {
         $names = explode(' ', $name);
 
-        $firstName = $names[0];
-        $lastName = $names[1];
+        $firstName = array_shift($names);
+        $lastName = array_pop($names);
+        $middleNames = $names;
 
-        return [$firstName, $lastName];
+        return [$firstName, $middleNames, $lastName];
+    }
+
+    public function __toString()
+    {
+        return implode(' ', array_filter([
+            $this->firstName,
+            implode(' ', $this->middleNames),
+            $this->lastName,
+        ]));
     }
 }

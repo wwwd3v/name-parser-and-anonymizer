@@ -10,6 +10,7 @@ class AnonymizedName extends NameStructure
     public function __construct(Name $name)
     {
         $this->firstName = $name->getFirstName();
+        $this->middleNames = [];
         $this->lastName = $this->anonymize($name->getLastName());
     }
 
@@ -27,6 +28,9 @@ class AnonymizedName extends NameStructure
      */
     public function __toString(): string
     {
-        return "$this->firstName $this->lastName";
+        return implode(' ', [
+            $this->firstName,
+            $this->lastName,
+        ]);
     }
 }
