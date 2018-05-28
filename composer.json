@@ -15,5 +15,10 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wwwd3v\\NameParserAndAnonymizer\\": "src/"
+        }
     }
 }
