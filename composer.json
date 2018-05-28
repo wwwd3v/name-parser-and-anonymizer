@@ -1,0 +1,17 @@
+{
+    "name": "wwwd3v/name-parser-and-anonymizer",
+    "description": "An easy to use name parser with advanced and configurable anonymization.",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^7.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Peter Orosz",
+            "email": "wwwd3v@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
