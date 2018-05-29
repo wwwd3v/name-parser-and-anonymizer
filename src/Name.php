@@ -17,11 +17,12 @@ class Name extends NameStructure
     }
 
     /**
+     * @param array $options
      * @return AnonymizedName
      */
-    public function anonymize(): AnonymizedName
+    public function anonymize(array $options = []): AnonymizedName
     {
-        return new AnonymizedName($this);
+        return new AnonymizedName($this, $options);
     }
 
 
@@ -40,12 +41,4 @@ class Name extends NameStructure
         return [$firstName, $middleNames, $lastName];
     }
 
-    public function __toString()
-    {
-        return implode(' ', array_filter([
-            $this->firstName,
-            implode(' ', $this->middleNames),
-            $this->lastName,
-        ]));
-    }
 }

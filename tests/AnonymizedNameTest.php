@@ -33,4 +33,32 @@ class AnonymizedNameTest extends TestCase
         $this->assertEquals('T.', $anonymizedName->getLastName());
         $this->assertEquals('John T.', (string) $anonymizedName);
     }
+
+    /** @test */
+    public function compound_name_is_anonymized_and_keeps_middle_names()
+    {
+        $anonymizedName = new AnonymizedName(
+            new Name('John Ronald Reuel Tolkien'),
+            ['middleNames' => 'keep']
+        );
+
+        $this->assertEquals('John', $anonymizedName->getFirstName());
+        $this->assertEquals(['Ronald', 'Reuel'], $anonymizedName->getMiddleNames());
+        $this->assertEquals('T.', $anonymizedName->getLastName());
+        $this->assertEquals('John Ronald Reuel T.', (string) $anonymizedName);
+    }
+
+    /** @test */
+    public function compound_name_is_anonymized_and_anonymizes_middle_names()
+    {
+        $anonymizedName = new AnonymizedName(
+            new Name('John Ronald Reuel Tolkien'),
+            ['middleNames' => 'anonymize']
+        );
+
+        $this->assertEquals('John', $anonymizedName->getFirstName());
+        $this->assertEquals(['R.', 'R.'], $anonymizedName->getMiddleNames());
+        $this->assertEquals('T.', $anonymizedName->getLastName());
+        $this->assertEquals('John R. R. T.', (string) $anonymizedName);
+    }
 }

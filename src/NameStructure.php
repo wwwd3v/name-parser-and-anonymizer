@@ -37,5 +37,15 @@ abstract class NameStructure
         return $this->lastName;
     }
 
-    abstract public function __toString();
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return implode(' ', array_filter([
+            $this->firstName,
+            implode(' ', $this->middleNames),
+            $this->lastName,
+        ]));
+    }
 }
