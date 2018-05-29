@@ -81,6 +81,22 @@ $name->getLastName();    // 'T.'
 (string) $name;        // 'John T.'
 ```
 
+Optionally, you can decide to `keep` or `anonymize` the middle names (rather than to `discard` them):
+```php
+$name = $parser->parse('John Ronald Reuel Tolkien')->anonymize([
+    'middleNames' => 'keep',
+]);
+
+(string) $name; // 'John Ronald Reuel T.'
+```
+```php
+$name = $parser->parse('John Ronald Reuel Tolkien')->anonymize([
+    'middleNames' => 'anonymize',
+]);
+
+(string) $name; // 'John R. R. T.'
+```
+
 ## Running the tests
 
 Simply run the local phpunit:
