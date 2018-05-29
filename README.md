@@ -36,7 +36,7 @@ $parser = new NameParserAndAnonymizer();
 It is trivial to parse a simple name:
 
 ```php
-$name = new Name('John Steinbeck');
+$name = $parser->parse('John Steinbeck');
 
 $name->getFirstName(); // 'John
 $name->getLastName();  // 'Steinbeck'
@@ -47,7 +47,7 @@ $name->getLastName();  // 'Steinbeck'
 Anonymizing names is then very simple:
 
 ```php
-$name = new Name('John Steinbeck')->anonymize();
+$name = $parser->parse('John Steinbeck')->anonymize();
 
 $name->getFirstName(); // 'John
 $name->getLastName();  // 'S.'
@@ -60,7 +60,7 @@ $name->getLastName();  // 'S.'
 Middle names are parsed out and grouped in an array:
 
 ```php
-$name = new Name('John Ronald Reuel Tolkien');
+$name = $parser->parse('John Ronald Reuel Tolkien');
 
 $name->getFirstName();   // 'John
 $name->getMiddleNames(); // ['Ronald', 'Reuel']
@@ -72,7 +72,7 @@ $name->getLastName();    // 'Tolkien'
 As a part of the anonymization process, the middle names are dropped:
 
 ```php
-$name = new Name('John Ronald Reuel Tolkien')->anonymize();
+$name = $parser->parse('John Ronald Reuel Tolkien')->anonymize();
 
 $name->getFirstName();   // 'John
 $name->getMiddleNames(); // []
