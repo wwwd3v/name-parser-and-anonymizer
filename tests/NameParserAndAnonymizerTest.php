@@ -22,8 +22,18 @@ class NameParserAndAnonymizerTest extends TestCase
     {
         $nameParserAndAnonymizer = new NameParserAndAnonymizer();
 
-        $name = (string) $nameParserAndAnonymizer->parse('John Ronald Reuel Tolkien')->anonymize();
+        $name1 = (string) $nameParserAndAnonymizer->parse('John Ronald Reuel Tolkien')->anonymize();
 
-        $this->assertEquals('John T.', $name);
+        $name2 = (string) $nameParserAndAnonymizer->parse('John Ronald Reuel Tolkien')->anonymize([
+            'middleNames' => 'keep',
+        ]);
+
+        $name3 = (string) $nameParserAndAnonymizer->parse('John Ronald Reuel Tolkien')->anonymize([
+            'middleNames' => 'anonymize',
+        ]);
+
+        $this->assertEquals('John T.', $name1);
+        $this->assertEquals('John Ronald Reuel T.', $name2);
+        $this->assertEquals('John R. R. T.', $name3);
     }
 }
