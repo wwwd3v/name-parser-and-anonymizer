@@ -34,9 +34,9 @@ class Name extends NameStructure
     {
         $names = explode(' ', $name);
 
-        $firstName = array_shift($names);
-        $lastName = array_pop($names);
-        $middleNames = $names;
+        $firstName = $names[0];
+        $middleNames = array_slice($names, 1, count($names) - 2);
+        $lastName = $names[count($names) - 1];
 
         return [$firstName, $middleNames, $lastName];
     }
