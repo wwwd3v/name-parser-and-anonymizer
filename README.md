@@ -97,6 +97,22 @@ $name = $parser->parse('John Ronald Reuel Tolkien')->anonymize([
 (string) $name; // 'John R. R. T.'
 ```
 
+## Edge cases
+
+### Excessive whitespace
+
+All the excessive whitespace is **automatically removed**. The resulting string representation of a parsed name **always** consists of names divided by a **single space** character:
+
+```php
+$name = $parser->parse(' John   Ronald    Reuel           Tolkien  ');
+
+$name->getFirstName();   // 'John
+$name->getMiddleNames(); // ['Ronald', 'Reuel']
+$name->getLastName();    // 'Tolkien'
+
+(string) $name;        // 'John Ronald Reuel Tolkien'
+```
+
 ## Running the tests
 
 Simply run the local phpunit:
