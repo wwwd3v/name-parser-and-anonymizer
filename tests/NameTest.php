@@ -28,4 +28,15 @@ class NameTest extends TestCase
         $this->assertEquals('Tolkien', $name->getLastName());
         $this->assertEquals('John Ronald Reuel Tolkien', (string) $name);
     }
+
+    /** @test */
+    public function excessive_whitespace_is_trimmed()
+    {
+        $name = new Name(' John   Ronald    Reuel           Tolkien  ');
+
+        $this->assertEquals('John', $name->getFirstName());
+        $this->assertEquals(['Ronald', 'Reuel'], $name->getMiddleNames());
+        $this->assertEquals('Tolkien', $name->getLastName());
+        $this->assertEquals('John Ronald Reuel Tolkien', (string) $name);
+    }
 }
