@@ -32,7 +32,10 @@ class Name extends NameStructure
      */
     private function splitIntoNames(string $name): array
     {
-        $names = explode(' ', $name);
+        // Excessive whitespace is exploded into empty strings which we remove.
+        $names = array_values(
+            array_filter(explode(' ', $name))
+        );
 
         $firstName = $names[0];
         $middleNames = array_slice($names, 1, count($names) - 2);
@@ -40,5 +43,4 @@ class Name extends NameStructure
 
         return [$firstName, $middleNames, $lastName];
     }
-
 }
